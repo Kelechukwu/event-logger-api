@@ -51,7 +51,7 @@ Simple RESTful API to log events
 | ct     | contains      |
 | gte | greater thanor equal to      |
 | AND | operatinal AND  (&)    |
-| OR | operatinal OR   (|)  |
+| OR | operatinal OR     |
 
    
 ## Event Schema
@@ -72,3 +72,10 @@ See an example [here] (https://github.com/Kelechukwu/event-logger-api/blob/main/
 2. Test that a client can retrieve events . [Example](https://github.com/Kelechukwu/event-logger-api/blob/main/activityApi/api/tests/tests.py#L24)
 3. Test that a client can query for specific events.  For this there is an API query syntax with certain keywords that should be tested 
 4. Finally, business logic that can be found in utils.py can be tested too in unittests
+
+## Scaling this service
+To make this service to be able to handle hundreds of requests per second we could do the following:
+- Distrubute the requests by using a load balancer with multiple instances. The load can be distributed using round-robin approach
+- Sharding the data using a property like component or email. Where you can have the data sit on multiple DB servers based on the component name. Consistent hashing will ensure that the correct records are stored in the correct instance
+- Having read Replicas( if there is a heavy read ratio). A master with replicas that are only used for reads while the master can handle only writes
+- Caching results of frequently used queries could help reduce the load on the DB. 
