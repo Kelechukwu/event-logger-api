@@ -6,7 +6,7 @@ Simple RESTful API to log events
 **Using docker / docker-compose ( Make sure you have docker installed locally)**
    - from the project directory run 
    `docker-compose build && docker-compose up -d`
-   - this should setup containers for the server and database(this application uses postgres DB). The application should start running on [localhost:8000](http://127.0.0.1:8000)
+   - this should setup containers for the server and database(this application uses postgres DB). The application should start running on [localhost:8000](http://127.0.0.1:8000/event)
    - to run tests execute `docker exec -it activity-server pipenv run python manage.py test --noinput --verbosity 2`
 ### Endpoints
  - **Save an Event** 
@@ -75,7 +75,7 @@ See an example [here] (https://github.com/Kelechukwu/event-logger-api/blob/main/
 
 ## Scaling this service
 To make this service to be able to handle hundreds of requests per second we could do the following:
-- Distrubute the requests by using a load balancer with multiple instances. The load can be distributed using round-robin approach
+- Distrubute the requests by using a load balancer with multiple instances of the service behind. The load can be distributed using round-robin approach
 - Sharding the data using a property like component or email. Where you can have the data sit on multiple DB servers based on the component name. Consistent hashing will ensure that the correct records are stored in the correct instance
 - Having read Replicas( if there is a heavy read ratio). A master with replicas that are only used for reads while the master can handle only writes
 - Caching results of frequently used queries could help reduce the load on the DB. 
