@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/Kelechukwu/event-logger-api.svg?branch=main)](https://travis-ci.com/Kelechukwu/event-logger-api)
 # event-logger-api
 Simple RESTful API to log events
 
