@@ -6,4 +6,4 @@ services:
 before_script:
   - pip install docker-compose
 script:
-  - docker-compose run server pipenv run python manage.py test && flake8
+  - docker-compose run server sh -c "pipenv run python manage.py test"
